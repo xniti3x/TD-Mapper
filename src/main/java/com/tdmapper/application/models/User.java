@@ -1,6 +1,9 @@
-package com.tdmapper.application.data;
+package com.tdmapper.application.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tdmapper.application.data.AbstractEntity;
+import com.tdmapper.application.data.Role;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;

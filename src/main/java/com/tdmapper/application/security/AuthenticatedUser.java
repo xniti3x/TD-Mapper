@@ -1,7 +1,7 @@
 package com.tdmapper.application.security;
 
-import com.tdmapper.application.data.User;
-import com.tdmapper.application.data.UserRepository;
+import com.tdmapper.application.models.User;
+import com.tdmapper.application.repositorys.UserRepository;
 import com.vaadin.flow.spring.security.AuthenticationContext;
 import java.util.Optional;
 import org.springframework.security.core.userdetails.UserDetails;

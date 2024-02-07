@@ -1,7 +1,8 @@
 package com.tdmapper.application.services;
 
-import com.tdmapper.application.data.User;
-import com.tdmapper.application.data.UserRepository;
+import com.tdmapper.application.models.User;
+import com.tdmapper.application.repositorys.UserRepository;
+
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

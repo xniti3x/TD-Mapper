@@ -1,7 +1,7 @@
 package com.tdmapper.application.views.transactions;
 
-import com.tdmapper.application.data.SamplePerson;
-import com.tdmapper.application.services.SamplePersonService;
+import com.tdmapper.application.models.Transaction;
+import com.tdmapper.application.services.TransactionService;
 import com.tdmapper.application.views.MainLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
@@ -44,13 +44,13 @@ import org.springframework.data.jpa.domain.Specification;
 @Uses(Icon.class)
 public class TransactionsView extends Div {
 
-    private Grid<SamplePerson> grid;
+    private Grid<Transaction> grid;
 
     private Filters filters;
-    private final SamplePersonService samplePersonService;
+    private final TransactionService TransactionService;
 
-    public TransactionsView(SamplePersonService SamplePersonService) {
-        this.samplePersonService = SamplePersonService;
+    public TransactionsView(TransactionService TransactionService) {
+        this.TransactionService = TransactionService;
         setSizeFull();
         addClassNames("transactions-view");
 
@@ -86,7 +86,7 @@ public class TransactionsView extends Div {
         return mobileFilters;
     }
 
-    public static class Filters extends Div implements Specification<SamplePerson> {
+    public static class Filters extends Div implements Specification<Transaction> {
 
         private final TextField name = new TextField("Name");
         private final TextField phone = new TextField("Phone");
@@ -148,17 +148,19 @@ public class TransactionsView extends Div {
         }
 
         @Override
-        public Predicate toPredicate(Root<SamplePerson> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+        public Predicate toPredicate(Root<Transaction> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
             List<Predicate> predicates = new ArrayList<>();
 
-            if (!name.isEmpty()) {
+            /*if (!name.isEmpty()) {
                 String lowerCaseFilter = name.getValue().toLowerCase();
-                Predicate firstNameMatch = criteriaBuilder.like(criteriaBuilder.lower(root.get("firstName")),
-                        lowerCaseFilter + "%");
+                //Predicate firstNameMatch = criteriaBuilder.like(criteriaBuilder.lower(root.get("firstName")),
+                        //lowerCaseFilter + "%");
                 Predicate lastNameMatch = criteriaBuilder.like(criteriaBuilder.lower(root.get("lastName")),
                         lowerCaseFilter + "%");
-                predicates.add(criteriaBuilder.or(firstNameMatch, lastNameMatch));
+                predicates.add(criteriaBuilder.or(//firstNameMatch, 
+                lastNameMatch));
             }
+           
             if (!phone.isEmpty()) {
                 String databaseColumn = "phone";
                 String ignore = "- ()";
@@ -197,6 +199,7 @@ public class TransactionsView extends Div {
                 }
                 predicates.add(criteriaBuilder.or(rolePredicates.toArray(Predicate[]::new)));
             }
+             */
             return criteriaBuilder.and(predicates.toArray(Predicate[]::new));
         }
 
@@ -221,16 +224,16 @@ public class TransactionsView extends Div {
     }
 
     private Component createGrid() {
-        grid = new Grid<>(SamplePerson.class, false);
-        grid.addColumn("firstName").setAutoWidth(true);
-        grid.addColumn("lastName").setAutoWidth(true);
-        grid.addColumn("email").setAutoWidth(true);
-        grid.addColumn("phone").setAutoWidth(true);
-        grid.addColumn("dateOfBirth").setAutoWidth(true);
-        grid.addColumn("occupation").setAutoWidth(true);
-        grid.addColumn("role").setAutoWidth(true);
+        grid = new Grid<>(Transaction.class, false);
+        //grid.addColumn("firstName").setAutoWidth(true);
+        grid.addColumn("transactionId").setAutoWidth(true);
+        //grid.addColumn("email").setAutoWidth(true);
+        //grid.addColumn("phone").setAutoWidth(true);
+        //grid.addColumn("dateOfBirth").setAutoWidth(true);
+        //grid.addColumn("occupation").setAutoWidth(true);
+        //grid.addColumn("role").setAutoWidth(true);
 
-        grid.setItems(query -> samplePersonService.list(
+        grid.setItems(query -> TransactionService.list(
                 PageRequest.of(query.getPage(), query.getPageSize(), VaadinSpringDataHelpers.toSpringDataSort(query)),
                 filters).stream());
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);

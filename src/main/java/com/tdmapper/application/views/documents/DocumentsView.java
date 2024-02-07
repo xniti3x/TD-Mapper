@@ -1,7 +1,7 @@
 package com.tdmapper.application.views.documents;
 
-import com.tdmapper.application.data.SamplePerson;
-import com.tdmapper.application.services.SamplePersonService;
+import com.tdmapper.application.models.Document;
+import com.tdmapper.application.services.DocumentService;
 import com.tdmapper.application.views.MainLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
@@ -42,13 +42,13 @@ import org.springframework.data.jpa.domain.Specification;
 @Uses(Icon.class)
 public class DocumentsView extends Div {
 
-    private Grid<SamplePerson> grid;
+    private Grid<Document> grid;
 
     private Filters filters;
-    private final SamplePersonService samplePersonService;
+    private final DocumentService DocumentService;
 
-    public DocumentsView(SamplePersonService SamplePersonService) {
-        this.samplePersonService = SamplePersonService;
+    public DocumentsView(DocumentService DocumentService) {
+        this.DocumentService = DocumentService;
         setSizeFull();
         addClassNames("documents-view");
 
@@ -84,7 +84,7 @@ public class DocumentsView extends Div {
         return mobileFilters;
     }
 
-    public static class Filters extends Div implements Specification<SamplePerson> {
+    public static class Filters extends Div implements Specification<Document> {
 
         private final TextField name = new TextField("Name");
         private final TextField phone = new TextField("Phone");
@@ -146,9 +146,9 @@ public class DocumentsView extends Div {
         }
 
         @Override
-        public Predicate toPredicate(Root<SamplePerson> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+        public Predicate toPredicate(Root<Document> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
             List<Predicate> predicates = new ArrayList<>();
-
+            /* 
             if (!name.isEmpty()) {
                 String lowerCaseFilter = name.getValue().toLowerCase();
                 Predicate firstNameMatch = criteriaBuilder.like(criteriaBuilder.lower(root.get("firstName")),
@@ -195,6 +195,7 @@ public class DocumentsView extends Div {
                 }
                 predicates.add(criteriaBuilder.or(rolePredicates.toArray(Predicate[]::new)));
             }
+            */
             return criteriaBuilder.and(predicates.toArray(Predicate[]::new));
         }
 
@@ -219,16 +220,17 @@ public class DocumentsView extends Div {
     }
 
     private Component createGrid() {
-        grid = new Grid<>(SamplePerson.class, false);
-        grid.addColumn("firstName").setAutoWidth(true);
+        grid = new Grid<>(Document.class, false);
+        grid.addColumn("fileid").setAutoWidth(true);
+        /* 
         grid.addColumn("lastName").setAutoWidth(true);
         grid.addColumn("email").setAutoWidth(true);
         grid.addColumn("phone").setAutoWidth(true);
         grid.addColumn("dateOfBirth").setAutoWidth(true);
         grid.addColumn("occupation").setAutoWidth(true);
         grid.addColumn("role").setAutoWidth(true);
-
-        grid.setItems(query -> samplePersonService.list(
+        */
+        grid.setItems(query -> DocumentService.list(
                 PageRequest.of(query.getPage(), query.getPageSize(), VaadinSpringDataHelpers.toSpringDataSort(query)),
                 filters).stream());
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);

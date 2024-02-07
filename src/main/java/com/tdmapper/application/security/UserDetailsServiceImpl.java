@@ -1,7 +1,8 @@
 package com.tdmapper.application.security;
 
-import com.tdmapper.application.data.User;
-import com.tdmapper.application.data.UserRepository;
+import com.tdmapper.application.models.User;
+import com.tdmapper.application.repositorys.UserRepository;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;

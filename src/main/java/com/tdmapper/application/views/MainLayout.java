@@ -1,6 +1,6 @@
 package com.tdmapper.application.views;
 
-import com.tdmapper.application.data.User;
+import com.tdmapper.application.models.User;
 import com.tdmapper.application.security.AuthenticatedUser;
 import com.tdmapper.application.views.documents.DocumentsView;
 import com.tdmapper.application.views.transactions.TransactionsView;
