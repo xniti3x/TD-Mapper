@@ -1,8 +1,7 @@
 package com.tdmapper.application.models;
 
-import com.tdmapper.application.data.AbstractEntity;
-
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
+@Table(name = "bank_transaction")
 public class Transaction extends AbstractEntity{
     public String transactionId;
     public String entryReference;
@@ -25,5 +25,5 @@ public class Transaction extends AbstractEntity{
     public String proprietaryBankTransactionCode;
     public String creditorAgent;
     public String debtorAgent;
-    public String internalTransactionId;
+    public String internalTransactionId;  
 }

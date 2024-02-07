@@ -1,7 +1,8 @@
 package com.tdmapper.application.models;
 
+import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.tdmapper.application.data.AbstractEntity;
 import com.tdmapper.application.data.Role;
 
 import jakarta.persistence.Column;
@@ -12,7 +13,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
-import java.util.Set;
 
 @Entity
 @Table(name = "application_user")

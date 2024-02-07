@@ -127,7 +127,6 @@ public class TransactionsView extends Div {
             Div actions = new Div(resetBtn, searchBtn);
             actions.addClassName(LumoUtility.Gap.SMALL);
             actions.addClassName("actions");
-
             add(name, phone, createDateRangeFilter(), occupations, roles, actions);
         }
 
@@ -211,8 +210,7 @@ public class TransactionsView extends Div {
             return result;
         }
 
-        private Expression<String> ignoreCharacters(String characters, CriteriaBuilder criteriaBuilder,
-                Expression<String> inExpression) {
+        private Expression<String> ignoreCharacters(String characters, CriteriaBuilder criteriaBuilder,Expression<String> inExpression) {
             Expression<String> expression = inExpression;
             for (int i = 0; i < characters.length(); i++) {
                 expression = criteriaBuilder.function("replace", String.class, expression,
@@ -223,16 +221,13 @@ public class TransactionsView extends Div {
 
     }
 
-    private Component createGrid() {
+    private Component createGrid() {     
         grid = new Grid<>(Transaction.class, false);
-        //grid.addColumn("firstName").setAutoWidth(true);
-        grid.addColumn("transactionId").setAutoWidth(true);
-        //grid.addColumn("email").setAutoWidth(true);
-        //grid.addColumn("phone").setAutoWidth(true);
-        //grid.addColumn("dateOfBirth").setAutoWidth(true);
-        //grid.addColumn("occupation").setAutoWidth(true);
-        //grid.addColumn("role").setAutoWidth(true);
-
+        grid.addColumn("bookingDate").setAutoWidth(true);
+        grid.addColumn("amount").setAutoWidth(true);
+        grid.addColumn("debtorName").setAutoWidth(true);
+        grid.addColumn(t-> this.textLength(t.getRemittanceInformationStructured(),50)).setAutoWidth(true).setHeader("Beschreibung"); 
+        
         grid.setItems(query -> TransactionService.list(
                 PageRequest.of(query.getPage(), query.getPageSize(), VaadinSpringDataHelpers.toSpringDataSort(query)),
                 filters).stream());
@@ -240,6 +235,10 @@ public class TransactionsView extends Div {
         grid.addClassNames(LumoUtility.Border.TOP, LumoUtility.BorderColor.CONTRAST_10);
 
         return grid;
+    }
+
+    private String textLength(String text, int length) {
+        return text.length()>=length?text.substring(0, length):text;
     }
 
     private void refreshGrid() {
