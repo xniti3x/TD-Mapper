@@ -1,6 +1,6 @@
 package com.tdmapper.application.security;
 
-import com.tdmapper.application.views.login.LoginView;
+import com.tdmapper.application.views.LoginView;
 import com.vaadin.flow.spring.security.VaadinWebSecurity;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

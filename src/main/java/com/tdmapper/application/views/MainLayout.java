@@ -2,8 +2,6 @@ package com.tdmapper.application.views;
 
 import com.tdmapper.application.models.User;
 import com.tdmapper.application.security.AuthenticatedUser;
-import com.tdmapper.application.views.documents.DocumentsView;
-import com.tdmapper.application.views.transactions.TransactionsView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.avatar.Avatar;

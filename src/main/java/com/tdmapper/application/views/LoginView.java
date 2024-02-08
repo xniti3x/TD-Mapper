@@ -1,4 +1,4 @@
-package com.tdmapper.application.views.login;
+package com.tdmapper.application.views;
 
 import com.tdmapper.application.security.AuthenticatedUser;
 import com.vaadin.flow.component.login.LoginI18n;

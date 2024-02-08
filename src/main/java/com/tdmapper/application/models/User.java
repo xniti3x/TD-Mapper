@@ -3,7 +3,7 @@ package com.tdmapper.application.models;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.tdmapper.application.data.Role;
+import com.tdmapper.application.utils.Role;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
