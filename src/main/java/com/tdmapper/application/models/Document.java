@@ -24,5 +24,9 @@ public class Document extends AbstractEntity{
      private String archive_filename;
      private String storage_path_id;
      private String original_filename;
-     private String owner_id ;
+     private String owner_id;
+
+     public Document(String archive_filename){
+          this.archive_filename = archive_filename;
+     }
 }
