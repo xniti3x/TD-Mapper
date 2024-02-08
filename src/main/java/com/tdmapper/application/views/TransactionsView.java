@@ -1,8 +1,10 @@
 package com.tdmapper.application.views;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 
 import com.tdmapper.application.models.Transaction;
+import com.tdmapper.application.services.RestService;
 import com.tdmapper.application.services.TransactionService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.dependency.Uses;
@@ -28,7 +30,7 @@ public class TransactionsView extends Div {
 
     private Grid<Transaction> grid;
     private final TransactionService transactionService;
-
+    @Autowired private RestService restService;
     public TransactionsView(TransactionService transactionService) {
         this.transactionService = transactionService;
         setSizeFull();
@@ -52,7 +54,9 @@ public class TransactionsView extends Div {
                 PageRequest.of(query.getPage(), query.getPageSize(), VaadinSpringDataHelpers.toSpringDataSort(query))).stream());
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
         grid.addClassNames(LumoUtility.Border.TOP, LumoUtility.BorderColor.CONTRAST_10);
-
+        
+        
+        grid.addItemClickListener(e->new DialogComponent(e.getItem(),restService));
         return grid;
     }
 

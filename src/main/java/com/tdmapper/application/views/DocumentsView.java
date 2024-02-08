@@ -28,14 +28,12 @@ public class DocumentsView extends Div {
 
     @Autowired
     private Filters filters;
-    private final DocumentService documentService;
-
+    
     public DocumentsView(DocumentService documentService) {
-        this.documentService = documentService;
         setSizeFull();
         addClassNames("documents-view");
 
-        filters = new Filters(() -> refreshGrid(),documentService);
+        filters = new Filters(() -> refreshGrid());
         VerticalLayout layout = new VerticalLayout(createMobileFilters(), filters, createGrid());
         layout.setSizeFull();
         layout.setPadding(false);
@@ -74,7 +72,7 @@ public class DocumentsView extends Div {
         //grid.setItems(query -> documentService.list(
         //        PageRequest.of(query.getPage(), query.getPageSize(), VaadinSpringDataHelpers.toSpringDataSort(query)),
         //        filters).stream());
-        grid.setItems(documentService.readJson("/workspaces/TD-Mapper/src/main/resources/mock-api/documents.json").stream().map(d->new Document(d)).toList());
+        //grid.setItems(documentService.readJson("/workspaces/TD-Mapper/src/main/resources/mock-api/documents.json").stream().map(d->new Document(d)).toList());
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
         grid.addClassNames(LumoUtility.Border.TOP, LumoUtility.BorderColor.CONTRAST_10);
 

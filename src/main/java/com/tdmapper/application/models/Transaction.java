@@ -28,4 +28,6 @@ public class Transaction extends AbstractEntity{
     public String creditorAgent;
     public String debtorAgent;
     public String internalTransactionId;  
+    public String correspondentId;  
+    
 }

@@ -1,6 +1,5 @@
 package com.tdmapper.application.views;
 import com.tdmapper.application.models.Document;
-import com.tdmapper.application.services.DocumentService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
@@ -22,10 +21,8 @@ import jakarta.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.domain.Specification;
 
-@ComponentScan(basePackages = "com.tdmapper.application.views")
 @org.springframework.stereotype.Component
 public class Filters extends Div implements Specification<Document> {
 
@@ -37,7 +34,7 @@ public class Filters extends Div implements Specification<Document> {
     private final CheckboxGroup<String> roles = new CheckboxGroup<>("Role");
 
     public Filters(){}
-    public Filters(Runnable onSearch, DocumentService documentService) {
+    public Filters(Runnable onSearch) {
 
         setWidthFull();
         addClassName("filter-layout");
@@ -46,7 +43,7 @@ public class Filters extends Div implements Specification<Document> {
         name.setPlaceholder("First or last name");
             
 
-        occupations.setItems(documentService.readJson("/workspaces/TD-Mapper/src/main/resources/mock-api/documents.json"));
+        //occupations.setItems(documentService.readJson("/workspaces/TD-Mapper/src/main/resources/mock-api/documents.json"));
 
         roles.setItems("Worker", "Supervisor", "Manager", "External");
         roles.addClassName("double-width");

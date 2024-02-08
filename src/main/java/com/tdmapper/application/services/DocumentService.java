@@ -47,26 +47,4 @@ public class DocumentService {
     public int count() {
         return (int) repository.count();
     }
-
-    public List<String> readJson(String filePath) {
-
-        ObjectMapper mapper = new ObjectMapper();
-        ArrayList<String> correspondenceList = new ArrayList<>();
-        try {
-            JsonNode results = mapper
-                    .readTree(new File(filePath))
-                    .get("results");
-
-            Iterator<JsonNode> elements = results.elements();
-
-            while (elements.hasNext()) {
-                JsonNode node = elements.next();
-                correspondenceList.add(node.get("archived_file_name").asText());
-            }
-
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-        return correspondenceList;
-    }
 }
