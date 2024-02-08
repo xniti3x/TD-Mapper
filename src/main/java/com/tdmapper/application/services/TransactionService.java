@@ -37,6 +37,9 @@ private final TransactionRepository repository;
     public Page<Transaction> list(Pageable pageable, Specification<Transaction> filter) {
         return repository.findAll(filter, pageable);
     }
+    public Page<Transaction> listNotNull(Pageable pageable) {
+        return repository.findByAmountIsNotNull(pageable);
+    }
 
     public int count() {
         return (int) repository.count();
