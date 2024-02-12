@@ -1,7 +1,6 @@
 # TD - Mapper
 
-This project can be used as a starting point to create your own Vaadin application with Spring Boot.
-It contains all the necessary configuration and some placeholder files to get you started.
+TD - Mapper – a cutting-edge tool designed to streamline the arduous process of aligning documents with their corresponding bank transactions. This innovative software harnesses the power of dynamic transaction lists to accurately map and match documents to their financial counterparts with unparalleled efficiency and precision.
 
 ## Running the application
 
